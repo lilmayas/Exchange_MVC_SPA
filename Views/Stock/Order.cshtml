@@ -1,0 +1,35 @@
+﻿<h1>Страница заказа</h1>
+
+<div id="orders-container"></div>
+
+
+
+
+
+<!-- Кнопки проверки работы ApiController-a -->
+<input type="radio" name="sel-method" id="rb1" />
+    <label for="rb1" class="label-button">GET</label>
+
+<input type="radio" name="sel-method" id="rb2" />
+    <label for="rb2" class="label-button">POST</label>
+
+<input type="radio" name="sel-method" id="rb3" />
+    <label for="rb3" class="label-button">PUT</label>
+
+<input type="radio" name="sel-method" id="rb4" />
+    <label for="rb4" class="label-button">DELETE</label>
+
+<button id="button-send">Send</button>
+
+<div id="order-container"></div>
+
+<script>
+    const st = document.createElement("link");
+    st.rel = "stylesheet";
+    st.href = "/css/order.css";
+    document.head.appendChild(st);
+
+    const scr = document.createElement("script");
+    scr.src = "/js/stockorder.js";
+    document.head.appendChild(scr);
+</script>

@@ -1,0 +1,22 @@
+﻿.delete-button-true, .delete-button-false {
+    background: url(/img/buttons.png);
+    background-size: 600%;
+    height: 30px;
+    width: 30px;
+}
+.delete-button-true {
+    background-position: -150px -110px;    
+}
+.delete-button-false {
+    background-position: -125px -110px;
+}
+.admin-tr-false, .admin-tr-true {
+    border: 1px solid #555;
+    
+}
+.admin-tr-false {
+    opacity: 0.5;
+}
+td {
+    padding: 5px 10px;
+}

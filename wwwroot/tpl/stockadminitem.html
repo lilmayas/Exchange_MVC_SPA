@@ -1,0 +1,9 @@
+﻿<tr class="admin-tr-{{isVisible}}">
+    <td>{{id}}</td>
+    <td onclick="editLogo({{id}})" class="stockItem"><img src="/img/{{logoFilename}}" /></td>
+    <td>{{title}}</td>
+    <td>{{description}}</td>
+    <td onclick="editAmount({{id}})">{{amount}}</td>
+    <td><div onclick="switchItem({{id}},{{isVisible}})" 
+             class="delete-button-{{isVisible}}"></div></td>
+</tr>

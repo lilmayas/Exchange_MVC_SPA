@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Lesson2";
+}
+
+<h1>Lesson2 - API</h1>
+
+<p>
+    API (Application-Program Interface) - интерфейс взаимодействия
+    программы с приложением(ями).<br />
+    <strong>Программа</strong> - центр управления, сервер, хранящий
+    основные данные.
+    <br />
+    <strong>Приложение(я)</strong> - дополнительное ПО, взаимодействующее
+    с Программой.<br />
+    В случае веб-проекта Программой является бекенд, приложением - фронтенд(ы)
+</p>
+<p>
+    Одним из правил построения распределенных систем (и API) является следование
+    идеологии <strong>CRUD</strong> - Create / Read / Update / Delete :
+    Программа должна реализовывать интерфейс, согласно которому приложение
+    может подавать команды 4х указанных типов.
+    <br />
+    В случае веб-проекта интерфейс заключается в "странице" - URL адресе, к которому
+    идет обращение. Например <code>/User</code>. Команды разных типов реализуются
+    путем разных методов запроса: 
+    <table border="1" cellpadding="5" >
+        <tr><th>Тип</th><th>Метод</th><th>Пример</th></tr>
+        <tr><td>Read</td><td>GET</td><td>GET /User <br/> GET /User/12</td></tr>
+        <tr><td>Delete</td><td>DELETE</td><td>DELETE /User/12</td></tr>
+        <tr><td>Create*</td><td>POST</td><td>POST /User ... {"name":"Petrovich",...}</td></tr>
+        <tr><td>Update*</td><td>PUT</td><td>PUT /User/12 ... {"name":"Petrovitch",...}</td></tr>
+        <tr><td>Update**</td><td>PATCH</td><td>PATCH /User/12 ... Avatar:file</td></tr>
+    </table>
+    * В ряде систем наоборот - POST для обновления, PUT для создания<br />
+    ** Используется для разделения функций обновления с файлом и без файла
+</p>
+<p>
+    <h2>API для случайных чисел</h2>
+
+    <div id="post-api">
+        <button>POST</button>
+        <span></span>
+    </div>
+</p>
+
+<script src="~/js/lesson2.js"></script>

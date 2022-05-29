@@ -1,0 +1,21 @@
+﻿body {
+    background: inherit;
+}
+
+input[type=radio] {
+    visibility: hidden;
+}
+
+.label-button {
+    background: tomato;
+    color: lime;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    margin: 3px 4px;
+    padding: 7px 15px;
+}
+
+input[type=radio]:checked + .label-button {
+    border: 3px solid maroon;
+    padding: 4px 12px;
+}

@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">MVC - SPA</h1>
+</div>
+
+<h2>MVC</h2>
+
+<p>
+    MVC (Model - View - Controller) - шаблон (Pattern), задающий структуру
+    приложения. Согласно с MVC, в приложении можно выделить (явно или мысленно)
+    три структурные части:
+</p>
+<ul>
+    <li>
+        Model - часть, ответственная за взаимодействие с данными (файлы, БД)
+    </li>
+    <li>
+        View (Представление) - часть, определяющая дизайн (отображение,
+        интерфейс пользователя)
+    </li>
+    <li>
+        Controller - обеспечивает взаимодействие пользователя, модели и представления:
+        определяет, какое представление запрошено;
+        какие данные нужны для него;
+        запрашивает эти данные у модели и передает представлению.
+        Одна из задач контроллера - быть посредником между интерфейсом пользователя
+        и данными.
+    </li>
+</ul>
+<p>
+    Шаблон MVC пришел на смену MVVM, в котором прямое взаимодействие  M < - > V
+</p>
+
+<h2>SPA</h2>
+
+<p>
+    SPA (Single Page Application) - концепция, согласно которой представления (View)
+    отделяются от серверной части и переносятся на сторону клиента.
+    Переключение между представлениями происходят без перезагрузки страницы (браузера),
+    создавая впечатления открытия новых страниц, но при этом оставаясь на одной и той
+    же, сохраняя все данные от первой загрузки.
+</p>
+<p>
+    PWA (Progressive Web Application) - приложение с распределенной клиенской частью
+    Обычно имеется в виду централизованная БД и разные клиенты: Web, Mobile, Desktop.
+</p>
+<p>
+    Разделение клиента и сервера приводит к выделению раздельных задач
+    Front-end для работы на стороне клиента,
+    Back-end - на стороне сервера
+</p>
+<p>
+    AJAX (Async JavaScript and XML) - технология асинхронного обмена данными (XML)
+    между клиентом (JavaScript) и сервером
+</p>
+<hr />
+<h3>Случайное число от сервера</h3>
+
+<button id="getRnd">Получить</button>
+<b id="rndValue"></b>
+
+<h3>Множество случайных чисел</h3>
+<input id="rndCount" type="number" value="5" />
+<button id="getRndArr">Получить</button>
+<b id="rndArrValue"></b>
+
+<script>
+    // Если скрипт обращается к элементам интерфейса (по ID) его следует
+    // помещать в обработчик события загрузки страницы. Иначе есть опасность того,
+    // что скрипт будет выполнен раньше, чем элемент сверстан
+    document.addEventListener("DOMContentLoaded", () => {
+        // находим интерфейсные элементы
+        const getRndButton = document.getElementById("getRnd");
+        // проверяем успешность поиска
+        if (!getRndButton) {
+            throw "Interface elements location error";
+        }
+        // создаем обработчик события для кнопки
+        getRndButton.onclick = click3;
+    });
+
+    function click1() {
+        const rndValueSpan = document.getElementById("rndValue");
+        if (!rndValueSpan) {
+            throw "Interface elements location error";
+        }
+        // обращаемся к серверу
+        fetch("/Home/RndValue")
+            .then(r => r.text())  // извлекаем тело ответа как текст
+            .then(body => {
+                rndValueSpan.innerText = body;  // выводим этот текст в <b>
+            })
+    }
+
+    function click2() {  // прием JSON, вариант 1
+        const rndValueSpan = document.getElementById("rndValue");
+        if (!rndValueSpan) {
+            throw "Interface elements location error";
+        }
+        // обращаемся к серверу
+        fetch("/Home/RndValue")
+            .then(r => r.text())  // извлекаем тело ответа как текст
+            .then(body => {
+                // преобразуем текст в JSON
+                const j = JSON.parse(body);
+                // проверяем наличие поля val
+                if (j.val) {
+                    rndValueSpan.innerText = j.val;  // выводим в <b>
+                } else {
+                    throw "Communication error: no VAL field";
+                }
+            })
+    }
+
+    function click3() {  // прием JSON, вариант 2
+        const rndValueSpan = document.getElementById("rndValue");
+        if (!rndValueSpan) {
+            throw "Interface elements location error";
+        }
+        // обращаемся к серверу
+        fetch("/Home/RndValue")
+            .then(r => r.json())  // извлекаем тело ответа как json
+            .then(j => {
+                // проверяем наличие поля val
+                if (j.val) {
+                    rndValueSpan.innerText = j.val;  // выводим в <b>
+                } else {
+                    throw "Communication error: no VAL field";
+                }
+            })
+    }
+</script>
